@@ -42,6 +42,8 @@ let btnH = 60;
 let startBtnX, startBtnY;
 let restartBtnX, restartBtnY;
 
+
+
 // ================= SETUP =================
 
 function setup() {
@@ -63,6 +65,8 @@ function setup() {
   rectMode(CORNER);
 }
 
+
+
 // ================= DRAW =================
 
 function draw() {
@@ -70,6 +74,8 @@ function draw() {
   else if (gameState === 1) runGame();
   else if (gameState === 2) gameOverScreen();
 }
+
+
 
 // ================= START MENU =================
 
@@ -85,6 +91,8 @@ function drawStartMenu() {
 
   drawButton(startBtnX, startBtnY, btnW, btnH, "Start Game", overStartButton());
 }
+
+
 
 // ================= GAMEPLAY =================
 
@@ -104,6 +112,8 @@ function runGame() {
   drawHealthBar();
   drawScoreTop();
 }
+
+
 
 // ================= INPUT =================
 
@@ -132,6 +142,8 @@ function resetGameVars() {
   ballSpeedHorizon = 10;
   ballSpeedVert = 0;
 }
+
+
 
 // ================= BALL =================
 
@@ -183,6 +195,8 @@ function keepInScreen() {
   if (ballX + ballSize / 2 > width) makeBounceRight(width);
 }
 
+
+
 // ================= RACKET =================
 
 function drawRacket() {
@@ -213,6 +227,8 @@ function watchRacketBounce() {
   }
 }
 
+
+
 // ================= WALLS =================
 
 function wallAdder() {
@@ -225,7 +241,10 @@ function wallAdder() {
       y: randY,
       w: wallWidth,
       h: randHeight,
-      scored: false
+      scored: false,
+
+      // ⭐ BORDER WARNA RANDOM
+      borderColor: color(random(255), random(255), random(255))
     });
 
     lastAddTime = millis();
@@ -252,7 +271,7 @@ function wallRemover(index) {
 }
 
 function wallDrawer(wall) {
-  stroke(0);
+  stroke(wall.borderColor); // ← WARNA RANDOM
   strokeWeight(3);
   fill(255);
 
@@ -300,6 +319,8 @@ function watchWallCollision(wall) {
   }
 }
 
+
+
 // ================= HEALTH BAR =================
 
 function drawHealthBar() {
@@ -336,6 +357,8 @@ function decreaseHealth() {
     gameState = 2;
   }
 }
+
+
 
 // ================= GAME OVER =================
 
@@ -374,6 +397,8 @@ function drawGameOverUI() {
   );
 }
 
+
+
 // ================= UI BUTTONS =================
 
 function drawButton(x, y, w, h, label, hover) {
@@ -408,6 +433,8 @@ function overRestartButton() {
     mouseY < ry + btnH
   );
 }
+
+
 
 // ================= SCORE TOP =================
 
